@@ -1,0 +1,36 @@
+{
+	"folders":
+	[
+		{
+		"path": ".",
+		"file_exclude_patterns": ["*.acn", "*.acr", "*.alg", "*.aux", "*.bbl", "*.blg", "*.glg", "*.glo",
+		 "*.gls", "*.ist", "*.loa", "*.lof", "*.log", "*.lot", "*.out", "*run.xml", "*synctex.gz",
+		  "*.toc", "*.dvi", "*.md5", "*.dpth", "*.auxlock", "*.nav", "*.snm"],
+		},
+	],
+	
+	"settings":
+	{
+		"TEXroot": "presentation.tex",
+		"builder": "basic",
+		"builder_settings":
+		{
+			"display_log": false,
+			"windows":
+			{
+			}
+		},
+		"env_auto_trigger": true,
+		"open_externally_patterns":
+		[
+			"*.pdf"
+		],
+		"show_panel_on_build": true,
+		"spell_check": true,
+		"tex_file_exts":
+		[
+			".tex",
+			".tikz"
+		],
+	}
+}

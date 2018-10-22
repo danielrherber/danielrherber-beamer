@@ -1,0 +1,51 @@
+\documentclass{beamer}
+% \documentclass[handout]{beamer} % no `animations'
+
+\input{preamble/packages}
+
+\input{preamble/commands}
+
+\input{preamble/style}
+
+% title
+\title{\LARGE{Title} \\ \normalsize{$<$\#$>$}}
+
+% author
+\author{Name, Name, Name}
+
+% institute
+\institute{
+  Engineering System Design Lab \\ Department of Industrial and Enterprise Systems Engineering \\ University of Illinois at Urbana-Champaign \\
+  \vspace{3mm} \includegraphics[width=1.5cm,height=1.5cm,keepaspectratio]{preamble/uiuc_logo.pdf}
+}
+
+% date
+\date{Date; Location}
+
+\begin{document}
+%------------------------------
+\begin{frame}
+  \titlepage
+\end{frame}
+
+%------------------------------
+\begin{frame}{Outline}
+  \tableofcontents
+\end{frame}
+
+%------------------------------
+\section{Title - Section 1}
+\xsectionpage{\circled{1} \\ Title - Section 1}
+\input{slides/section_1}
+
+%------------------------------
+\section{Title - Section 2}
+\xsectionpage{\circled{2} \\ Title - Section 2}
+\input{slides/section_2}
+
+%------------------------------
+\appendix
+\input{slides/appendix_end}
+\input{slides/appendix_1}
+
+\end{document}

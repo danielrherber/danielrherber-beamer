@@ -1,0 +1,153 @@
+%------------------------------
+% colors
+%------------------------------
+% main colors
+\definecolor{uiucblue}{HTML}{13294b}
+\definecolor{uiucorange}{HTML}{e84A27}
+
+% gray
+\definecolor{uiucgray}{gray}{0.5}
+
+%------------------------------
+% custom commands
+%------------------------------
+% circled command
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+    \node[shape=circle,draw,inner sep=2pt, line width=0.5mm] (char) {\large#1};}}
+
+% references
+\newcommand{\xref}[1]{\textcolor{uiucblue}{#1}}
+
+% footnote marks
+\newcommand{\xfootnotemark}[1]{\textcolor{uiucblue}{\textsuperscript{#1}}}
+
+% title mark
+\newcommand{\xtitlemark}{\textcolor{uiucblue}{\faLongArrowRight}~}
+
+% line command
+\newcommand{\myline}[1]{\textcolor{uiucblue}{\rule{#1}{0.8pt}}}
+
+% list item color changer
+\newcommand{\itemcolor}[1]{
+  \renewcommand{\makelabel}[1]{\color{#1}\hfil ##1}}
+
+% footnote text command
+\newcommand{\xfootnotetext}[1]{\let\thefootnote\relax\footnote[frame]{#1}\addtocounter{footnote}{-1}\let\thefootnote\svthefootnote}
+
+% section page command
+\newcommand{\xsectionpage}[1]{
+\miniframesoff
+\bgroup
+\setbeamercolor{background canvas}{bg=uiucblue}
+\begin{frame}[noframenumbering,plain]
+% \transdissolve 
+\begin{columns}
+\column{0.90\textwidth}
+\centering
+\vspace*{-1cm}
+\begin{spacing}{2}
+\textcolor{white}{\Huge{#1}}
+\end{spacing}
+\end{columns}
+\end{frame}
+\egroup
+\miniframeson
+}
+
+%------------------------------
+% formatting commands
+%------------------------------
+\mode<presentation>
+{
+	\useinnertheme[]{circles}
+	\useoutertheme[footline=authortitle,subsection=false]{miniframes}
+	\usecolortheme{whale}
+	\setbeamercolor*{palette primary}{use=structure, fg=white, bg=uiucorange}
+	\setbeamercolor*{palette secondary}{use=structure, fg=white, bg=uiucblue}
+	\setbeamercolor*{palette tertiary}{use=structure, fg=white, bg=uiucblue}
+	% \usefonttheme[onlymath]{serif}
+	\usefonttheme{serif}
+}
+
+% equation number formatting
+\makeatletter
+\def\tagform@#1{\maketag@@@{\textcolor{uiucblue}{(\ignorespaces#1\unskip\@@italiccorr)}}}
+\makeatother
+
+% itemize formatting
+\setbeamertemplate{items}[circle]
+\setbeamercolor{itemize item}{fg=uiucblue}
+
+% enumerate formatting
+\setbeamercolor{enumerate item}{fg=uiucblue} % doesn't do anything?
+\setbeamercolor{local structure}{fg=uiucblue}
+
+% figure caption formatting
+\setbeamercolor{caption name}{fg=uiucblue}
+
+% block formatting (defintions and theorems)
+\setbeamercolor{block title}{bg=uiucblue,fg=white}
+\setbeamercolor{block body}{bg=black!10,fg=black}
+
+% slide title formatting
+\setbeamercolor{frametitle}{fg=black, bg=}
+
+% table of contents formatting
+\setbeamercolor{section in toc}{fg=black}
+\setbeamercolor{subsection in toc}{fg=uiucblue}
+\setbeamertemplate{sections/subsections in toc}[sections numbered]
+
+% footer formatting (only slide number)
+\setbeamertemplate{footline}{
+\begin{beamercolorbox}[sep=0.5em, wd=\paperwidth, leftskip=0.2cm, rightskip=0.2cm]{footlinecolor}
+\hfill \scriptsize{\insertframenumber}
+\end{beamercolorbox}
+}
+
+% first page formatting
+\setbeamercolor{titlelike}{fg=black,bg=} % (black with no background)
+\setbeamerfont{title}{size=\huge}
+\setbeamerfont{institute}{size=\footnotesize}
+\setbeamerfont{date}{size=\footnotesize}
+
+% footnote formatting
+\setbeamercolor{footlinecolor}{fg=uiucblue,bg=}
+\setbeamercolor{footnote}{fg=uiucblue,bg=}
+\setbeamercolor{footnote mark}{fg=uiucblue,bg=}
+\setbeamerfont{footnote}{size=\scriptsize}
+% NEED?
+% https://tex.stackexchange.com/questions/30720/footnote-without-a-marker
+% \newcommand\blfootnote[1]{%
+%   \begingroup
+%   \renewcommand\thefootnote{}\footnote{#1}%
+%   \addtocounter{footnote}{-1}%
+%   \endgroup
+% }
+
+% remove navigation bar
+\beamertemplatenavigationsymbolsempty
+
+% add logo to bottom right corner
+% \logo{%
+%    \includegraphics[width=0.75cm,height=0.75cm,keepaspectratio]{preamble/uiuc_logo.pdf}~%
+% }
+
+% uncover everything in a step-wise fashion
+%\beamerdefaultoverlayspecification{<+->}
+
+% ?
+\setbeamercolor{structure}{fg=uiucblue,bg=}
+
+% ?
+\makeatletter
+\let\beamer@writeslidentry@miniframeson=\beamer@writeslidentry
+\def\beamer@writeslidentry@miniframesoff{%
+  \expandafter\beamer@ifempty\expandafter{\beamer@framestartpage}{}% does not happen normally
+  {%else
+    % removed \addtocontents commands
+    \clearpage\beamer@notesactions%
+  }
+}
+\newcommand*{\miniframeson}{\let\beamer@writeslidentry=\beamer@writeslidentry@miniframeson}
+\newcommand*{\miniframesoff}{\let\beamer@writeslidentry=\beamer@writeslidentry@miniframesoff}
+\makeatother
